@@ -1,92 +1,125 @@
 @extends('layouts.app')
 
+@section('title', 'Register To Brin')
+
 @section('content')
-<main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
-    <div class="flex">
-        <div class="w-full">
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
-
-                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
-                    {{ __('Register') }}
-                </header>
-
-                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST"
-                    action="{{ route('register') }}">
-                    @csrf
-
-                    <div class="flex flex-wrap">
-                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Name') }}:
-                        </label>
-
-                        <input id="name" type="text" class="form-input w-full @error('name')  border-red-500 @enderror"
-                            name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                        @error('name')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
+    <section class="flex-1 py-8 px-2 md:px-8 flex flex-col items-center">
+        <!-- Register Card-->
+        <div
+            class=" bg-white max-w-2xl w-full space-y-8 px-4 sm:px-6 py-7 rounded-3xl text-black flex flex-col items-center tracking-tighter">
+            <img src=" ./img/brin-logo-black.png" alt="brin logo" class="w-48 sm:w-60">
+            <form class="w-full space-y-5 leading-none tracking-tighter px-6" action="" method="POST">
+                <div class="space-y-3">
+                    <label class="text-sm font-medium" for="usernameInput">
+                        Nama Lengkap <span class="text-red-600">*</span>
+                    </label>
+                    <input type="text" id="usernameInput" class="block w-full rounded-md placeholder-gray-400 py-2 px-6 @error('name') border-red-500 @enderror"
+                    value="{{ old('name') }}" placeholder="Nama" name="name" required autocomplete="off">
+                    @error('name')
+                    <p class="text-red-500 text-xs italic mt-4">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                </div>
+                <div class="space-y-3">
+                    <label class="text-sm font-medium" for="emailInput">Alamat E-mail <span
+                            class="text-red-600">*</span></label>
+                    <input type="email" id="emailInput" class="block w-full rounded-md placeholder-gray-400 py-2 px-6 @error('email') border-red-500 @enderror" name="email"
+                    value="{{ old('email') }}" placeholder="Ketik disini" required autocomplete="off">
+                    @error('email')
+                    <p class="text-red-500 text-xs italic mt-4">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                </div>
+                <div class="w-full flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+                    <!-- form left -->
+                    <div class="space-y-3 flex-1">
+                        <div class="space-y-3">
+                            <label class="text-sm font-medium" for="passwordInput">Password <span
+                                    class="text-red-600">*</span></label>
+                            <input type="password" id="passwordInput"
+                                class="block w-full rounded-md placeholder-gray-400 py-2 px-6 @error('password') border-red-500 @enderror" name="password"
+                                placeholder="Ketik disini" required>
+                            @error('password')
+                            <p class="text-red-500 text-xs italic mt-4">
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
+                        <div class="space-y-3">
+                            <label class="text-sm font-medium" for="identitas">Jenis Identitas <span
+                                    class="text-red-600">*</span></label>
+                            <select name="identitas" id="identitasInput"
+                                class="block w-full rounded-md py-2 px-6 invalid:text-gray-400 cursor-pointer" name="identity"
+                                value="{{ old('identity') }}" required>
+                                <option value="" disabled selected hidden>--Pilih--</option>
+                                <!-- Template Option -->
+                                <option value="energi-terbarukan">Energi Terbarukan</option>
+                                <option value="energi-terbarukan">Energi Terbarukan</option>
+                                <option value="energi-terbarukan">Energi Terbarukan</option>
+                            </select>
+                        </div>
+                        <div class="space-y-3">
+                            <label class="text-sm font-medium" for="identitas">Jenis Kelamin <span
+                                    class="text-red-600">*</span></label>
+                            <select name="gender" id="KelaminInput"
+                                class="block w-full rounded-md py-2 px-6 invalid:text-gray-400 cursor-pointer" value="{{ old('gender') }}" required>
+                                <option value="" disabled selected hidden>--Pilih--
+                                </option>
+                                <!-- Contoh Option -->
+                                <option value="male">Laki-laki</option>
+                                <option value="female">Perempuan</option>
+                            </select>
+                        </div>
                     </div>
-
-                    <div class="flex flex-wrap">
-                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('E-Mail Address') }}:
-                        </label>
-
-                        <input id="email" type="email"
-                            class="form-input w-full @error('email') border-red-500 @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email">
-
-                        @error('email')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
+                    <!-- form right -->
+                    <div class="space-y-3 flex-1">
+                        <div class="space-y-3">
+                            <label class="text-sm font-medium" for="rePasswordInput">Konfirmasi
+                                Password <span class="text-red-600">*</span></label>
+                            <input type="password" id="rePasswordInput"
+                                class="block w-full rounded-md placeholder-gray-400 py-2 px-6" name="password_confirmation"
+                                placeholder="Ketik disini" required>
+                        </div>
+                        <div class="space-y-3">
+                            <label class="text-sm font-medium" for="noIdentitasInput">Nomor Identitas <span
+                                    class="text-red-600">*</span></label>
+                            <input type="text" id="noIdentitasInput"
+                                class="block w-full rounded-md placeholder-gray-400 py-2 px-6 @error('identity_number') border-red-500 @enderror" 
+                                value="{{ old('identity_number') }}" name="identity_number"
+                                placeholder="Ketik disini" required autocomplete="off">
+                            @error('identity_number')
+                            <p class="text-red-500 text-xs italic mt-4">
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
+                        <div class="space-y-3">
+                            <label class="text-sm font-medium" for="birthDate">Tanggal Lahir <span
+                                    class="text-red-600">*</span></label>
+                            <input type="date" id="birthDate"
+                                class="block w-full invalid:text-gray-400 rounded-md  py-2 px-6 @error('birthday') border-red-500 @enderror"
+                                value="{{ old('birthday') }}" name="birthday" required>
+                            @error('birthday')
+                            <p class="text-red-500 text-xs italic mt-4">
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
                     </div>
+                </div>
+                <div class="flex justify-center pt-5">
+                    <button
+                        class="w-full sm:w-max rounded-xl bg-indigo-500 hover:bg-indigo-600 shadow-indigo-700  shadow-md text-white md:py-3 font-bold"
+                        type="submit">Daftar
+                    </button>
+                </div>
 
-                    <div class="flex flex-wrap">
-                        <label for="password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Password') }}:
-                        </label>
 
-                        <input id="password" type="password"
-                            class="form-input w-full @error('password') border-red-500 @enderror" name="password"
-                            required autocomplete="new-password">
+            </form>
 
-                        @error('password')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <label for="password-confirm" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Confirm Password') }}:
-                        </label>
-
-                        <input id="password-confirm" type="password" class="form-input w-full"
-                            name="password_confirmation" required autocomplete="new-password">
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <button type="submit"
-                            class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4">
-                            {{ __('Register') }}
-                        </button>
-
-                        <p class="w-full text-xs text-center text-gray-700 my-6 sm:text-sm sm:my-8">
-                            {{ __('Already have an account?') }}
-                            <a class="text-blue-500 hover:text-blue-700 no-underline hover:underline" href="{{ route('login') }}">
-                                {{ __('Login') }}
-                            </a>
-                        </p>
-                    </div>
-                </form>
-
-            </section>
         </div>
-    </div>
-</main>
+
+    </section>
 @endsection

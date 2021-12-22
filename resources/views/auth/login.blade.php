@@ -1,84 +1,52 @@
 @extends('layouts.app')
 
+@section('title', 'Login To Brin')
+
 @section('content')
-<main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
-    <div class="flex">
-        <div class="w-full">
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
-
-                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
-                    {{ __('Login') }}
-                </header>
-
-                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
-                    @csrf
-
-                    <div class="flex flex-wrap">
-                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('E-Mail Address') }}:
-                        </label>
-
-                        <input id="email" type="email"
-                            class="form-input w-full @error('email') border-red-500 @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                        @error('email')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <label for="password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Password') }}:
-                        </label>
-
-                        <input id="password" type="password"
-                            class="form-input w-full @error('password') border-red-500 @enderror" name="password"
-                            required>
-
-                        @error('password')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-
-                    <div class="flex items-center">
-                        <label class="inline-flex items-center text-sm text-gray-700" for="remember">
-                            <input type="checkbox" name="remember" id="remember" class="form-checkbox"
-                                {{ old('remember') ? 'checked' : '' }}>
-                            <span class="ml-2">{{ __('Remember Me') }}</span>
-                        </label>
-
-                        @if (Route::has('password.request'))
-                        <a class="text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline hover:underline ml-auto"
-                            href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
-                        @endif
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <button type="submit"
-                        class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4">
-                            {{ __('Login') }}
-                        </button>
-
-                        @if (Route::has('register'))
-                        <p class="w-full text-xs text-center text-gray-700 my-6 sm:text-sm sm:my-8">
-                            {{ __("Don't have an account?") }}
-                            <a class="text-blue-500 hover:text-blue-700 no-underline hover:underline" href="{{ route('register') }}">
-                                {{ __('Register') }}
-                            </a>
-                        </p>
-                        @endif
-                    </div>
-                </form>
-
-            </section>
-        </div>
+<section class="flex-1 py-8 px-2 md:px-8 flex flex-col items-center">
+    <!-- Login Card-->
+    <div
+        class=" bg-white max-w-lg w-full space-y-8 px-4 sm:px-6 py-7 rounded-3xl text-black flex flex-col items-center">
+        <img src="{{asset("img/brin-logo-black.png")}}" alt="brin logo" class="w-48 sm:w-60">
+        <form class="w-full space-y-8" action="" method="POST">
+            <div class="w-full px-1 sm:px-2 max-w-md space-y-5">
+                <div class="px-2 tracking-tighter space-y-2">
+                    <label class="text-sm font-medium leading-none" for="email">Masukkan Nama Pengguna /
+                        Email
+                        Address</label>
+                    <input type="email" id="email" 
+                        class="block w-full rounded-md placeholder-gray-400 py-2 px-6 @error('email') border-red-500 @enderror" name="email"
+                        value="{{ old('email') }}"
+                        placeholder="Nama pengguna atau email">
+                    @error('email')
+                    <p class="text-red-500 text-xs italic mt-4">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                </div>
+                <div class="px-2 tracking-tighter space-y-2">
+                    <label class="text-sm font-medium leading-none" for="email">Masukkan Password</label>
+                    <input type="password" id="password"
+                        class="block w-full rounded-md placeholder-gray-400 py-2 px-6 @error('password') border-red-500 @enderror" name="password"
+                        placeholder="Password">
+                    @error('password')
+                    <p class="text-red-500 text-xs italic mt-4">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                </div>
+            </div>
+            <div class="w-full px-3">
+                <button
+                    class="w-full rounded-xl bg-indigo-500 hover:bg-indigo-600 shadow-indigo-700  shadow-md text-white md:py-3 font-bold">Masuk
+                </button>
+            </div>
+            <div class="leading-none text-sm py-5 text-center">
+                <span>Belum memilki akun? <a class="text-blue-600 font-semibold hover:text-blue-800"
+                        href="register.html">Daftar
+                        disini</a></span>
+            </div>
+        </form>
     </div>
-</main>
+</section>
 @endsection

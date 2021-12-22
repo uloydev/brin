@@ -1,0 +1,15 @@
+{
+	"entitiesDir": "app/Models",
+	"migrationsDir": "database/migrations",
+	"framework": "laravel",
+	"frameworkVersion": "8",
+	"token": "39c6e6b4933ecf23b2057f2d6c2bed836b5faa8658ae74786ec734ef0a5c65c7293e0e0d09b62af202cc13603aacd773bbfa",
+	"db": {
+		"type": "MY_SQL",
+		"host": "localhost",
+		"user": "root",
+		"password": "passwordnya",
+		"database": "brin",
+		"port": 3306
+	}
+}
