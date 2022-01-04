@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\IdentityType;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -23,6 +24,14 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    public function showRegistrationForm()
+    {
+        return view('auth.register', [
+            'identityTypes' => IdentityType::all(),
+        ]);
+    }
+
 
     /**
      * Where to redirect users after registration.
@@ -53,6 +62,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'identity_type' => ['required', 'numeric'],
+            'identity_number' => ['required', 'numeric'],
+            'gender' => ['required', 'string'],
+            'birthday' => ['required', 'date'],
         ]);
     }
 
@@ -68,6 +81,10 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'identity_type_id' => $data['identity_type'],
+            'identity_number' => $data['identity_number'],
+            'gender' => $data['gender'],
+            'birthday' => $data['birthday'],
         ]);
     }
 }

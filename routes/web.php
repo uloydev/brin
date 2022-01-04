@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProposalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->middleware(['auth'])->name('home');
 Auth::routes();
 
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['checkrole:user'])->name('user.')->group(function () {
+    Route::get('/submission', [ProposalController::class, 'submission'])->name('submission');
+    Route::get('/submission/new', [ProposalController::class, 'submissionForm'])->name('submission.new');
+    Route::post('/submission/new', [ProposalController::class, 'submitProposal']);
+    Route::get('/result', [ProposalController::class, 'resultForm'])->name('result-form');
+    Route::post('/result', [ProposalController::class, 'searchResult']);
+    Route::get('/result/{proposal}', [ProposalController::class, 'showResult'])->name('result');
+});
 
+Route::middleware(['checkrole:reviewer'])->name('reviewer.')->group(function () {
+    
+});

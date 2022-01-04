@@ -81,27 +81,29 @@
         </section>
 
         <!-- Section 3-->
-        <section class="flex flex-col md:grid md:grid-cols-9 p-4 md:gap-24">
-            <div class="md:col-span-4 font-semibold">
-                <h1>Penyerahan Dana Penelitian</h1>
-                <div class="-mt-10 w-80 h-auto">
-                    <canvas id="myChart3" width="400" height="400"></canvas>
+        @if (auth()->user()->is_reviewer)
+            <section class="flex flex-col md:grid md:grid-cols-9 p-4 md:gap-24">
+                <div class="md:col-span-4 font-semibold">
+                    <h1>Penyerahan Dana Penelitian</h1>
+                    <div class="-mt-10 w-80 h-auto">
+                        <canvas id="myChart3" width="400" height="400"></canvas>
+                    </div>
                 </div>
-            </div>
-            <div class="md:col-span-5  font-semibold">
-                <h1>Pelaksanaan Penelitian</h1>
-                <div class="flex items-center my-4 lg:mt-16">
-                    <h1 class="text-2xl font-bold">9.500</h1>
-                    <small class="text-gray-500 text-xs ml-2">Total</small>
-                </div>
-                <!-- progress Bar -->
-                <div
-                    class="ml-5  progress-bar mt-3 w-4/5 h-5 rounded-full relative overflow-hidden transition-all will-change-transform shadow-lg bg-indigo-800">
+                <div class="md:col-span-5  font-semibold">
+                    <h1>Pelaksanaan Penelitian</h1>
+                    <div class="flex items-center my-4 lg:mt-16">
+                        <h1 class="text-2xl font-bold">9.500</h1>
+                        <small class="text-gray-500 text-xs ml-2">Total</small>
+                    </div>
+                    <!-- progress Bar -->
+                    <div
+                        class="ml-5  progress-bar mt-3 w-4/5 h-5 rounded-full relative overflow-hidden transition-all will-change-transform shadow-lg bg-indigo-800">
 
-                    <div class="absolute h-full w-4/5 bg-indigo-500 rounded-full "></div>
+                        <div class="absolute h-full w-4/5 bg-indigo-500 rounded-full "></div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
 
         <!-- Section 4 -->
         <section class="font-semibold py-5 px-3">

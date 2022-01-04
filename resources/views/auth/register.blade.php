@@ -4,11 +4,22 @@
 
 @section('content')
     <section class="flex-1 py-8 px-2 md:px-8 flex flex-col items-center">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <!-- Register Card-->
         <div
             class=" bg-white max-w-2xl w-full space-y-8 px-4 sm:px-6 py-7 rounded-3xl text-black flex flex-col items-center tracking-tighter">
             <img src=" ./img/brin-logo-black.png" alt="brin logo" class="w-48 sm:w-60">
-            <form class="w-full space-y-5 leading-none tracking-tighter px-6" action="" method="POST">
+            <form class="w-full space-y-5 leading-none tracking-tighter px-6" action="{{route('register')}}" method="POST">
+                @csrf
                 <div class="space-y-3">
                     <label class="text-sm font-medium" for="usernameInput">
                         Nama Lengkap <span class="text-red-600">*</span>
@@ -48,22 +59,22 @@
                             @enderror
                         </div>
                         <div class="space-y-3">
-                            <label class="text-sm font-medium" for="identitas">Jenis Identitas <span
+                            <label class="text-sm font-medium" for="identitasInput">Jenis Identitas <span
                                     class="text-red-600">*</span></label>
-                            <select name="identitas" id="identitasInput"
+                            <select name="identity_type" id="identitasInput"
                                 class="block w-full rounded-md py-2 px-6 invalid:text-gray-400 cursor-pointer" name="identity"
                                 value="{{ old('identity') }}" required>
                                 <option value="" disabled selected hidden>--Pilih--</option>
                                 <!-- Template Option -->
-                                <option value="energi-terbarukan">Energi Terbarukan</option>
-                                <option value="energi-terbarukan">Energi Terbarukan</option>
-                                <option value="energi-terbarukan">Energi Terbarukan</option>
+                                @foreach ($identityTypes as $type)
+                                    <option value="{{$type->id}}">{{ $type->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="space-y-3">
-                            <label class="text-sm font-medium" for="identitas">Jenis Kelamin <span
+                            <label class="text-sm font-medium" for="GenderInput">Jenis Kelamin <span
                                     class="text-red-600">*</span></label>
-                            <select name="gender" id="KelaminInput"
+                            <select name="gender" id="GenderInput"
                                 class="block w-full rounded-md py-2 px-6 invalid:text-gray-400 cursor-pointer" value="{{ old('gender') }}" required>
                                 <option value="" disabled selected hidden>--Pilih--
                                 </option>

@@ -1,7 +1,7 @@
 <footer class="bg-gradient-to-r from-gray-500 to-gray-600 h-auto">
     <div class="flex flex-col md:flex-row justify-center align-center bg-slate-400 gap-5 h-auto">
         <div class="flex flex-col justify-start gap-10 p-8">
-            <img class="w-32" src="./img/brin-logo.png" alt="logo BRIN">
+            <img class="w-32" src="{{asset('img/brin-logo.png')}}" alt="logo BRIN">
             <div class="flex md:flex-col gap-6">
                 <div>
                     <h5>Hubungi Kami</h5>
