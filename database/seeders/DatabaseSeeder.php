@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\ProposalCategory;
+use App\Models\Question;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
@@ -34,6 +35,7 @@ class DatabaseSeeder extends Seeder
             IdentityTypeSeeder::class,
             ProposalCategorySeeder::class,
             ProposalSeeder::class,
+            QuestionSeeder::class,
         ]);
         
     }

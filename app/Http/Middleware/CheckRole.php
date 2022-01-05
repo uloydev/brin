@@ -17,12 +17,11 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        $isReviewer = Auth::user()->is_reviewer;
-        if (isset($role)) {
-            if ($role == 'reviewer' and $isReviewer) {
+        $user = Auth::user();
+        if (isset($role) and $user) {
+            if ($role == 'reviewer' and $user->is_reviewer) {
                 return $next($request);
-            } else if ($role == 'user' and ! $isReviewer) {
-                // dd($role, $isReviewer);
+            } else if ($role == 'user' and ! $user->is_reviewer) {
                 return $next($request);
             }
         }

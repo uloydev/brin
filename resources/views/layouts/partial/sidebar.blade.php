@@ -20,7 +20,7 @@
                         <span>Informasi</span>
                     </a>
                     @if (auth()->user()->is_reviewer)
-                        <a href="reviewPage.html" class="py-4 px-6 hover:bg-slate-500 flex items-center space-x-3 font-normal">
+                        <a href="{{ route('reviewer.review.index') }}" class="py-4 px-6 hover:bg-slate-500 flex items-center space-x-3 font-normal">
                             <svg class="w-6 h-6" fill="white" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -29,7 +29,7 @@
                             </svg>
                             <span>Review Proposal</span>
                         </a>
-                        <a href="hasilPage.html" class="py-4 px-6 hover:bg-slate-500 flex items-center space-x-3 font-normal">
+                        <a href="{{ route('reviewer.review.history') }}" class="py-4 px-6 hover:bg-slate-500 flex items-center space-x-3 font-normal">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

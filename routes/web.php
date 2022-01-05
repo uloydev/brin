@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,8 @@ Route::middleware(['checkrole:user'])->name('user.')->group(function () {
 });
 
 Route::middleware(['checkrole:reviewer'])->name('reviewer.')->group(function () {
-    
+    Route::get('/review', [ReviewController::class, 'index'])->name('review.index');
+    Route::get('/review/history', [ReviewController::class, 'history'])->name('review.history');
+    Route::get('/review/{proposal}', [ReviewController::class, 'showQuestion'])->name('review.question');
+    Route::post('/review/{proposal}', [ReviewController::class, 'saveAnswer']);
 });

@@ -24,4 +24,9 @@ class Proposal extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function answeredQuestions()
+    {
+        return $this->hasMany('App\Models\Answer');
+    }
 }

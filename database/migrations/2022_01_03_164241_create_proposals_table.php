@@ -22,6 +22,7 @@ class CreateProposalsTable extends Migration
             $table->foreignId('user_id');
             $table->date('research_date');
             $table->string('file');
+            $table->integer('score')->nullable();
             $table->timestamps();
         });
     }
