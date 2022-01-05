@@ -25,7 +25,7 @@
                     <td>{{ $proposal->research_date->format('Y')}}</td>
                     <td>{{ $proposal->proposalCategory->name }}</td>
                     <td>{{ $proposal->title }}</td>
-                    <td><i class="fas fa-file-pdf text-red-700 bg-white scale-150 mx-auto"></i></td>
+                    <td><a href="{{ Storage::url($proposal->file) }}"><i class="fas fa-file-pdf text-red-700 bg-white scale-150 mx-auto"></i></a></td>
                 </tr>
                 @endforeach
             </table>

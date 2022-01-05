@@ -10,12 +10,12 @@ const customGray = '#38383C'
 const indigos = [colorIndigo, darkIndigo];
 const grayIndigo = [colorIndigo, customGray];
 
-const donnutChart = (ctx, legend, color, fontSize) => {
-    const dataPoints = [300, 50];
+const donnutChart = (ctx, legend, color, fontSize, dataPoints) => {
+    // const dataPoints = [300, 50];
     const data = {
         labels: [
-            'Dana Digunakan',
-            'Dana Tak Terpakai',
+            'minggu ini',
+            '',
         ],
         datasets: [{
             data: dataPoints,
@@ -46,7 +46,7 @@ const donnutChart = (ctx, legend, color, fontSize) => {
             ctx.font = `${options.fontSize}px ${options.fontFamily}`;
             ctx.textAlign = 'center';
             ctx.fillStyle = options.fontColor;
-            ctx.fillText(`${dataPoints[0]}%`, width / 2, ((height / 2) + 21 * 0.34));
+            ctx.fillText(`${(dataPoints[0]+dataPoints[1])/dataPoints[0]*100}%`, width / 2, ((height / 2) + 21 * 0.34));
         }
     }
 
@@ -80,23 +80,12 @@ const donnutChart = (ctx, legend, color, fontSize) => {
     return new Chart(ctx, config);
 }
 
-const barChart = (ctx) => {
-    const labels = [
-        'Pangan',
-        'Social Humaniora',
-        'Kesehatan',
-        'Kemaritiman',
-        'Energi',
-        'Produk Rekayasa Keteknikan',
-        'Transportasi',
-        'Pertahanan Keamanan',
-        'Bidang Lainnya'
-    ];
+const barChart = (ctx, labels, values) => {
 
     const data = {
         labels: labels,
         datasets: [{
-            data: [65, 59, 80, 81, 56, 55, 40, 90, 100],
+            data: values,
             backgroundColor: [
                 'rgba(107, 88, 145, 0.6)'
             ],
@@ -131,13 +120,18 @@ const barChart = (ctx) => {
 //element
 const ctx = document.getElementById('myChart');
 const ctx1 = document.getElementById('myChart1');
-const ctx2 = document.getElementById('myChart2');
+// const ctx2 = document.getElementById('myChart2');
 const ctx3 = document.getElementById('barChart').getContext('2d');
-const ctx4 = document.getElementById('myChart3');
+// const ctx4 = document.getElementById('myChart3');
 
 //instantiating Chart
-const myChart = donnutChart(ctx, false, grayIndigo, 18);
-const myChart1 = donnutChart(ctx1, false, grayIndigo, 18);
-const myChart2 = donnutChart(ctx2, false, grayIndigo, 18);
-const myChart3 = donnutChart(ctx4, true, indigos, 21);
-const myBarChart = barChart(ctx3);
+fetch('/chart-data')
+    .then((resp) => resp.json())
+    .then((data)  => {
+        console.log(data)
+        const myChart = donnutChart(ctx, false, grayIndigo, 18, [data.proposal.totalWeek, data.proposal.total - data.proposal.totalWeek]);
+        const myChart1 = donnutChart(ctx1, false, grayIndigo, 18, [data.proposalApproved.totalWeek, data.proposalApproved.total - data.proposalApproved.totalWeek]);
+        const myBarChart = barChart(ctx3, data.category.labels, data.category.values);
+    });
+// const myChart = donnutChart(ctx, false, grayIndigo, 18);
+// const myChart1 = donnutChart(ctx1, false, grayIndigo, 18);

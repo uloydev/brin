@@ -10,12 +10,12 @@
                 <div class="lg:col-span-5 text-center lg:space-y-6 space-y-11">
                     <span class="text-slate-400 font-bold flex-grow-3">Total Proposal Masuk</span>
                     <div class="text-2xl text-slate-400 font-semibold break-words">
-                        <span>10.500</span>
+                        <span>{{ $proposal['total'] }}</span>
                         <p class="text-xs tracking-wide">Proposal</p>
                     </div>
                 </div>
                 <div class="flex flex-col lg:col-span-2 items-center space-y-3 lg:space-y-1">
-                    <span class="text-emerald-500">+21%</span>
+                    <span class="text-emerald-500">+{{ $proposal['percentageDay'] }}%</span>
                     <div class="lg:w-20 w-24">
                         <canvas id="myChart" width="400" height="400"></canvas>
                     </div>
@@ -26,30 +26,14 @@
                 <div class="col-span-5 text-center lg:space-y-6 space-y-11">
                     <span class="text-slate-400 font-bold flex-grow-3">Total Proposal Masuk</span>
                     <div class="text-2xl text-slate-400 font-semibold break-words">
-                        <span>10.500</span>
+                        <span>{{ $proposalApproved['total'] }}</span>
                         <p class="text-xs tracking-wide">Proposal</p>
                     </div>
                 </div>
                 <div class="flex flex-col col-span-2 items-center space-y-3 lg:space-y-1">
-                    <span class="text-emerald-500">+41%</span>
+                    <span class="text-emerald-500">+{{ $proposalApproved['percentageDay'] }}%</span>
                     <div class="lg:w-20 w-24">
                         <canvas id="myChart1" width="400" height="400"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="flex justify-around lg:grid lg:grid-cols-8 lg:w-80 lg:h-40 w-full h-48 bg-aside rounded-xl py-6 px-2 gap-10">
-                <div class="col-span-5 text-center lg:space-y-6 space-y-11">
-                    <span class="text-slate-400 font-bold flex-grow-3">Total Proposal Masuk</span>
-                    <div class="text-2xl text-slate-400 font-semibold break-words">
-                        <span>10.500</span>
-                        <p class="text-xs tracking-wide">Proposal</p>
-                    </div>
-                </div>
-                <div class="flex flex-col col-span-2 items-center space-y-3 lg:space-y-1">
-                    <span class="text-emerald-500">+21%</span>
-                    <div class="lg:w-20 w-24">
-                        <canvas id="myChart2" width="400" height="400"></canvas>
                     </div>
                 </div>
             </div>
@@ -81,7 +65,7 @@
         </section>
 
         <!-- Section 3-->
-        @if (auth()->user()->is_reviewer)
+        {{-- @if (auth()->user()->is_reviewer)
             <section class="flex flex-col md:grid md:grid-cols-9 p-4 md:gap-24">
                 <div class="md:col-span-4 font-semibold">
                     <h1>Penyerahan Dana Penelitian</h1>
@@ -103,7 +87,7 @@
                     </div>
                 </div>
             </section>
-        @endif
+        @endif --}}
 
         <!-- Section 4 -->
         <section class="font-semibold py-5 px-3">

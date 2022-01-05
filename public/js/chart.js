@@ -30,10 +30,10 @@ var customGray = '#38383C';
 var indigos = [colorIndigo, darkIndigo];
 var grayIndigo = [colorIndigo, customGray];
 
-var donnutChart = function donnutChart(ctx, legend, color, fontSize) {
-  var dataPoints = [300, 50];
+var donnutChart = function donnutChart(ctx, legend, color, fontSize, dataPoints) {
+  // const dataPoints = [300, 50];
   var data = {
-    labels: ['Dana Digunakan', 'Dana Tak Terpakai'],
+    labels: ['minggu ini', ''],
     datasets: [{
       data: dataPoints,
       backgroundColor: color,
@@ -59,7 +59,7 @@ var donnutChart = function donnutChart(ctx, legend, color, fontSize) {
       ctx.font = "".concat(options.fontSize, "px ").concat(options.fontFamily);
       ctx.textAlign = 'center';
       ctx.fillStyle = options.fontColor;
-      ctx.fillText("".concat(dataPoints[0], "%"), width / 2, height / 2 + 21 * 0.34);
+      ctx.fillText("".concat((dataPoints[0] + dataPoints[1]) / dataPoints[0] * 100, "%"), width / 2, height / 2 + 21 * 0.34);
     }
   };
   var config = {
@@ -91,12 +91,11 @@ var donnutChart = function donnutChart(ctx, legend, color, fontSize) {
   return new chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart(ctx, config);
 };
 
-var barChart = function barChart(ctx) {
-  var labels = ['Pangan', 'Social Humaniora', 'Kesehatan', 'Kemaritiman', 'Energi', 'Produk Rekayasa Keteknikan', 'Transportasi', 'Pertahanan Keamanan', 'Bidang Lainnya'];
+var barChart = function barChart(ctx, labels, values) {
   var data = {
     labels: labels,
     datasets: [{
-      data: [65, 59, 80, 81, 56, 55, 40, 90, 100],
+      data: values,
       backgroundColor: ['rgba(107, 88, 145, 0.6)'],
       borderColor: ['rgb(82, 71, 107)'],
       borderWidth: 1,
@@ -125,16 +124,20 @@ var barChart = function barChart(ctx) {
 
 
 var ctx = document.getElementById('myChart');
-var ctx1 = document.getElementById('myChart1');
-var ctx2 = document.getElementById('myChart2');
-var ctx3 = document.getElementById('barChart').getContext('2d');
-var ctx4 = document.getElementById('myChart3'); //instantiating Chart
+var ctx1 = document.getElementById('myChart1'); // const ctx2 = document.getElementById('myChart2');
 
-var myChart = donnutChart(ctx, false, grayIndigo, 18);
-var myChart1 = donnutChart(ctx1, false, grayIndigo, 18);
-var myChart2 = donnutChart(ctx2, false, grayIndigo, 18);
-var myChart3 = donnutChart(ctx4, true, indigos, 21);
-var myBarChart = barChart(ctx3);
+var ctx3 = document.getElementById('barChart').getContext('2d'); // const ctx4 = document.getElementById('myChart3');
+//instantiating Chart
+
+fetch('/chart-data').then(function (resp) {
+  return resp.json();
+}).then(function (data) {
+  console.log(data);
+  var myChart = donnutChart(ctx, false, grayIndigo, 18, [data.proposal.totalWeek, data.proposal.total - data.proposal.totalWeek]);
+  var myChart1 = donnutChart(ctx1, false, grayIndigo, 18, [data.proposalApproved.totalWeek, data.proposalApproved.total - data.proposalApproved.totalWeek]);
+  var myBarChart = barChart(ctx3, data.category.labels, data.category.values);
+}); // const myChart = donnutChart(ctx, false, grayIndigo, 18);
+// const myChart1 = donnutChart(ctx1, false, grayIndigo, 18);
 
 /***/ }),
 
