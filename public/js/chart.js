@@ -59,7 +59,7 @@ var donnutChart = function donnutChart(ctx, legend, color, fontSize, dataPoints)
       ctx.font = "".concat(options.fontSize, "px ").concat(options.fontFamily);
       ctx.textAlign = 'center';
       ctx.fillStyle = options.fontColor;
-      ctx.fillText("".concat((dataPoints[0] + dataPoints[1]) / dataPoints[0] * 100, "%"), width / 2, height / 2 + 21 * 0.34);
+      ctx.fillText("".concat(dataPoints[0] == 0 && dataPoints[1] == 0 ? 0 : (dataPoints[0] + dataPoints[1]) / dataPoints[0] * 100, "%"), width / 2, height / 2 + 21 * 0.34);
     }
   };
   var config = {

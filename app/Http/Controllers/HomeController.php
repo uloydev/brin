@@ -25,11 +25,11 @@ class HomeController extends Controller
         return view('index', [
             'proposal' => [
                 'total' => $total,
-                'percentageDay' => 100 - ($todayCount / $total * 100),
+                'percentageDay' => $todayCount != 0 ? 100 - ($todayCount / $total * 100) : 0,
             ],
             'proposalApproved' => [
                 'total' => $totalApproved,
-                'percentageDay' => 100 - ($todayApprovedCount / $totalApproved * 100),
+                'percentageDay' =>  $todayApprovedCount != 0 ? 100 - ($todayApprovedCount / $totalApproved * 100) : 0,
             ],
         ]);
     }

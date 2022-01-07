@@ -24,7 +24,7 @@
             <div
                 class="flex justify-around lg:grid lg:grid-cols-8 lg:w-80 lg:h-40 w-full h-48 bg-aside rounded-xl py-6 px-3 gap-10">
                 <div class="col-span-5 text-center lg:space-y-6 space-y-11">
-                    <span class="text-slate-400 font-bold flex-grow-3">Total Proposal Masuk</span>
+                    <span class="text-slate-400 font-bold flex-grow-3">Total Proposal Approved</span>
                     <div class="text-2xl text-slate-400 font-semibold break-words">
                         <span>{{ $proposalApproved['total'] }}</span>
                         <p class="text-xs tracking-wide">Proposal</p>

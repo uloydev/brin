@@ -11,7 +11,7 @@
 - install dependencies "composer install"
 - copy file .env.example to .env
 - edit database details with your own db in .env file
-- run command "php artisan generate:key"
+- run command "php artisan key:generate"
 - run command "php artisan migrate --seed"
 - run command "php artisan storage:link"
 - run command "php artisan serve"
