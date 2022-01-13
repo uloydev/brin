@@ -155,6 +155,25 @@
                         </a>
                     </div>
                 </div>
+                <div class="bg-aside rounded-xl w-full py-10 px-5 text-left space-y-4">
+                    <div class="flex gap-6 items-center">
+                        <div class="w-24 flex justify-between font-bold">
+                            <span>Nomor </span>
+                            <span>:</span>
+                        </div>
+                        <span>01.11.2018</span>
+                    </div>
+                    <div class="flex gap-6 items-center">
+                        <div class="w-24 flex justify-between font-bold">
+                            <span>Tentang </span>
+                            <span>:</span>
+                        </div>
+                        <a href="#">
+                            <i class="fas fa-file-pdf text-red-700 bg-white mx-1"></i>
+                            Permenristekdikti Nomor 40 Tahu 2018 Tentang Program Prioritas Riset Nasional
+                        </a>
+                    </div>
+                </div>
             </div>
             <!-- cards end -->
         </section>

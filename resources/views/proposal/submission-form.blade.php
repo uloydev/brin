@@ -59,7 +59,7 @@
                             class="text-red-600">*</span></label>
                     <div class="w-full">
                         <input type="file" id="fileInput" class="hidden" name="file" accept=".pdf" required>
-                        <label for="fileInput"
+                        <label for="fileInput" id="fileLabel"
                             class="label-control w-full flex justify-between items-center rounded-md cursor-pointer border border-gray-500 border-solid py-3 px-6 text-gray-400">
                             <span class="file-name">Upload</span>
                             <i class="fas fa-cloud-upload-alt"></i>
@@ -76,4 +76,15 @@
         </div>
     </section>
 
+@endsection
+
+@section('script')
+    <script>
+        let inputFile = document.getElementById('fileInput');
+        let fileLabel = document.getElementById('fileLabel');
+
+        inputFile.addEventListener('change', () => {
+            fileLabel.innerHTML = '<span class="file-name">' + inputFile.files[0].name + '</span>';
+        })
+    </script>
 @endsection
